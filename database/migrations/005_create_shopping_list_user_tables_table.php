@@ -20,4 +20,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('shopping_list_user');
     }
-}
+};
