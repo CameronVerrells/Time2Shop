@@ -31,8 +31,18 @@ class HomeComponent extends Component
 
     public function createShoppingList()
     {
+        $this->validate([
+            'newShoppingListName' => 'required',
+        ], [
+            'newShoppingListName.required' => 'The shopping list name is required.',
+        ]);
+        
         $cookieId = Cookie::get('cookie_id');
         $user = User::firstOrCreate(['cookie_id' => $cookieId]);
+
+        if (!$this->newShoppingListName) {
+            
+        }
 
         $shoppingList = new ShoppingList(['name' => $this->newShoppingListName]);
         $user->shoppingLists()->save($shoppingList);

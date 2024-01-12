@@ -7,6 +7,7 @@
     </div>
 
     <input type="text" wire:model="newShoppingListName" placeholder="New list name" class="mt-3 p-2 border rounded">
+    @error('newShoppingListName') <span class="error">{{ $message }}</span> @enderror
 
     <div class="mt-6 grid grid-cols-1 gap-4">
         @foreach ($shoppingLists as $shoppingList)

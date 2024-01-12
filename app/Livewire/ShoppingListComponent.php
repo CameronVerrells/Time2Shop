@@ -24,6 +24,12 @@ class ShoppingListComponent extends Component
 
     public function createItem()
     {
+        $this->validate([
+            'newItemName' => 'required',
+        ], [
+            'newItemName.required' => 'The item name is required.',
+        ]);
+        
         $item = $this->shoppingList->items()->create(['name' => $this->newItemName]);
         $this->items->push($item);
     }

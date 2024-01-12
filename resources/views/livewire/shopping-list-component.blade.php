@@ -13,6 +13,7 @@
     </div>
 
     <input type="text" wire:model="newItemName" placeholder="New item name" class="mt-3 p-2 border rounded">
+    @error('newItemName') <span class="error">{{ $message }}</span> @enderror
 
     <div class="mt-6 grid grid-cols-1 gap-4">
         @foreach ($items as $item)
