@@ -20,5 +20,10 @@ class ShoppingList extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }
 
