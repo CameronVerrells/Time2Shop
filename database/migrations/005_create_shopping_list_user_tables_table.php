@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('shopping_list_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shopping_list_id')->constrained();
+            $table->foreignId('shopping_list_id')->constrained()->onDelete('cascade');;
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
