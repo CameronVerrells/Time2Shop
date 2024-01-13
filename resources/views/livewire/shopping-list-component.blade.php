@@ -4,6 +4,9 @@
         <button wire:click="createItem" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Add Item
         </button>
+        <button wire:click="createCategory" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add Category
+        </button>
         <a href="{{ route('home')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Go Home
         </a>
@@ -15,10 +18,22 @@
     <input type="text" wire:model="newItemName" placeholder="New item name" class="mt-3 p-2 border rounded">
     @error('newItemName') <span class="error">{{ $message }}</span> @enderror
 
+    <select wire:model="newItemCategory" class="mt-3 p-2 border rounded">
+        <option value="0">Select a category</option>
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+    @error('newItemCategory') <span class="error">{{ $message }}</span> @enderror
+
+    <input type="text" wire:model="newItemCategoryName" placeholder="New category name" class="mt-3 p-2 border rounded">
+    @error('newItemCategoryName') <span class="error">{{ $message }}</span> @enderror
+
     <div class="mt-6 grid grid-cols-1 gap-4">
         @foreach ($items as $item)
             <div class="p-4 border rounded">
                 <h3 class="text-xl font-bold">{{ $item->name }}</h3>
+                <h3 class="text-xl font-bold">{{ optional($item->category)->name }}</h3>
                 <button wire:click="deleteItem({{ $item->id }})" class="text-red-500">Delete Item</button>
             </div>
         @endforeach
