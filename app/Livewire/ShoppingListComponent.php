@@ -30,10 +30,13 @@ class ShoppingListComponent extends Component
     public function createItem()
     {
         $this->validate([
-            'newItemName' => 'required',
+            'newItemName' => 'required|string|min:3|max:50|regex:/^[a-zA-Z0-9\s]+$/',
             'newItemCategory' => 'required|exists:categories,id',
         ], [
             'newItemName.required' => 'The item name is required.',
+            'newItemName.min' => 'The item name must be at least 3 characters.',
+            'newItemName.max' => 'The item name may not be greater than 50 characters.',
+            'newItemName.regex' => 'The item name may only contain letters, numbers, and spaces.',
             'newItemCategory.required' => 'The item category is required.',
             'newItemCategory.exists' => 'The selected category does not exist.',
         ]);
@@ -45,9 +48,12 @@ class ShoppingListComponent extends Component
     public function createCategory()
     {
         $this->validate([
-            'newItemCategoryName' => 'required',
+            'newItemCategoryName' => 'required|string|min:3|max:50|regex:/^[a-zA-Z0-9\s]+$/',
         ], [
             'newItemCategoryName.required' => 'The category name is required.',
+            'newItemCategoryName.min' => 'The category name must be at least 3 characters.',
+            'newItemCategoryName.max' => 'The category name may not be greater than 50 characters.',
+            'newItemCategoryName.regex' => 'The category name may only contain letters, numbers, and spaces.',
         ]);
 
         $category = $this->shoppingList->categories()->create(['name' => $this->newItemCategoryName]);

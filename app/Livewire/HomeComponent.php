@@ -32,9 +32,12 @@ class HomeComponent extends Component
     public function createShoppingList()
     {
         $this->validate([
-            'newShoppingListName' => 'required',
+            'newShoppingListName' => 'required|string|min:3|max:50|regex:/^[a-zA-Z0-9\s]+$/',
         ], [
             'newShoppingListName.required' => 'The shopping list name is required.',
+            'newShoppingListName.min' => 'The shopping list name must be at least 3 characters.',
+            'newShoppingListName.max' => 'The shopping list name may not be greater than 50 characters.',
+            'newShoppingListName.regex' => 'The shopping list name may only contain letters, numbers, and spaces.',
         ]);
         
         $cookieId = Cookie::get('cookie_id');
